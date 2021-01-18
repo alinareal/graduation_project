@@ -119,6 +119,6 @@ class FileReader(object):
         return self.general_information
 
 
-sample_obj = FileReader()
-sample_obj.set_file_path('indata', 'infile.txt')
-dog_obj = sample_obj.read_file()
+sample = FileReader()
+sample.set_file_path('indata', 'infile.txt')
+sample_obj = sample.read_file()
