@@ -85,5 +85,4 @@ class GeneralInformation:
         for transaction in self.transactions:
             trans_data = self._fill_transactions(transaction)
             json_data[transactions].append(trans_data)
-            print(transaction.type)
         return json_data

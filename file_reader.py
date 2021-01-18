@@ -113,7 +113,7 @@ class FileReader(object):
             print('Reading file was completed successfully.')
 
             json_data = self.general_information.convert_to_dict()
-            json_path = os.path.join('outdata', 'magic_summer.json')
+            json_path = os.path.join('outdata', 'outfile.json')
             create_json(json_path, json_data)
 
         return self.general_information
