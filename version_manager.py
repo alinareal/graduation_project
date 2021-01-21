@@ -4,6 +4,7 @@
 # TODO learn about context manager and make one with class
 # TODO learn how to get path of current file
 # TODO subprocess documention (FUNCTION that stores information)
+# TODO add doc to class
 import os
 import subprocess
 
@@ -29,6 +30,7 @@ class VersionManager(object):
         print("{tool} executed command is '{command}'.".format(tool=tool, command=execution_command))
         process = subprocess.Popen(execution_command.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         execution_result, error = process.communicate()
+        execution_result = execution_result.decode(encoding='UTF-8').strip('\n')
 
         message = "Result of {tool} command execution is '{execution_result}'."
         print(message.format(tool=tool, execution_result=execution_result))
@@ -37,7 +39,7 @@ class VersionManager(object):
             print("Error during {tool} command execution is '{error}'".format(tool=tool, error=error))
             raise EnvironmentError
 
-        return execution_result.decode(encoding='UTF-8').strip('\n')
+        return execution_result
 
     def go_to_previous_commit(self):
         commit_hash = self.git('log -1 --skip 1 --format=format:"%H"').strip('"')
