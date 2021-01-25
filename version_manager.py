@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-# TODO make separate project and make commits
-# TODO learn how to switch from one commit to another within the project (git commands) using os.system() (git bash) (write function)
-# TODO learn about context manager and make one with class
-# TODO learn how to get path of current file
-# TODO subprocess documention (FUNCTION that stores information)
-# TODO add doc to class
 import os
 import subprocess
 
@@ -55,8 +49,3 @@ class VersionManager(object):
 
 with VersionManager() as version_manager:
     version_manager.go_to_previous_commit()
-
-# version_obj = VersionManager()
-# version_obj.go_to_previous_commit()
-
-# os.system('git branch --show-current')
