@@ -45,7 +45,3 @@ class VersionManager(object):
     def go_to_current_commit(self):
         commit_hash = self.git('log --pretty=format:"%h" -1').strip('"')
         self.go_to_any_commit(commit_hash)
-
-
-with VersionManager() as version_manager:
-    version_manager.go_to_previous_commit()

@@ -9,7 +9,7 @@ from utils import create_json
 class FileReader(object):
 
     def __init__(self):
-        self.infile_name = os.path.join('indata', 'infile.txt')
+        self.infile_name = os.path.join('indata', 'infile1.txt')
         self.general_information = GeneralInformation()
 
     def set_file_path(self, folder, file_name):
@@ -112,13 +112,21 @@ class FileReader(object):
                         raise ValueError(message.format(str(index), line_id=conf.ID.POS))
             print('Reading file was completed successfully.')
 
-            json_data = self.general_information.convert_to_dict()
-            json_path = os.path.join('outdata', 'outfile.json')
-            create_json(json_path, json_data)
-
         return self.general_information
 
 
-sample = FileReader()
-sample.set_file_path('indata', 'infile.txt')
-sample_obj = sample.read_file()
+# sample = FileReader()
+# sample.set_file_path('indata', 'File.283dcd67-45b8-4872-ba95-626b79130ec8.txt')
+# sample_obj = sample.read_file()
+# json_data = sample.general_information.convert_to_dict()
+# json_path = os.path.join('outdata', 'File.283dcd67-45b8-4872-ba95-626b79130ec8.json')
+# create_json(json_path, json_data)
+
+#TODO follow principle of single responsibility in method read_file +
+#TODO make decomposition in method read_file ?
+#TODO create system variable in windows to store path to current project ?
+#TODO extract this variable in config.py +
+#TODO file system: outdata/dd-mm-yyyy-Thh-mm-ss/commit_hash1
+#TODO file system: outdata/dd-mm-yyyy-Thh-mm-ss/commit_hash2
+#TODO make script launcher cli interface
+#TODO add 30 indata files
