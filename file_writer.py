@@ -127,11 +127,11 @@ class FileWriter(object):
 
 write_obj = FileWriter()
 
-write_obj.set_header('name', 'Andrei')
+write_obj.set_header('name', 'Elena')
 
-write_obj.set_header('surname', 'Vasilevskiy')
-write_obj.set_header('patronymic', 'Ignatovich')
-write_obj.set_header('address', 'Ostrovskogo6/18MozyrBelarus')
+write_obj.set_header('surname', 'Vasnetsova')
+write_obj.set_header('patronymic', 'Dmitrievna')
+write_obj.set_header('address', 'Minina73/18MozyrBelarus')
 
 write_obj.add_trans()
 write_obj.set_trans('trans_sum', '000000005500')
@@ -150,11 +150,6 @@ write_obj.set_trans('currency_code', '974')
 
 write_obj.add_trans()
 write_obj.add_trans()
-write_obj.add_trans()
-write_obj.add_trans()
-write_obj.add_trans()
-write_obj.add_trans()
-write_obj.add_trans()
-write_obj.add_trans()
+
 
 write_obj.create_file()
