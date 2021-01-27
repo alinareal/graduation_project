@@ -36,12 +36,20 @@ class VersionManager(object):
         return execution_result
 
     def go_to_previous_commit(self):
-        commit_hash = self.git('log -1 --skip 1 --format=format:"%H"').strip('"')
+        commit_hash = self.get_previous_hash()
         self.go_to_any_commit(commit_hash)
 
     def go_to_any_commit(self, commit_hash):
         self.git('checkout {commit_hash}'.format(commit_hash=commit_hash))
 
     def go_to_current_commit(self):
-        commit_hash = self.git('log --pretty=format:"%h" -1').strip('"')
+        commit_hash = self.get_current_hash()
         self.go_to_any_commit(commit_hash)
+
+    def get_current_hash(self):
+        commit_hash = self.git('log --pretty=format:"%h" -1').strip('"')
+        return commit_hash
+
+    def get_previous_hash(self):
+        commit_hash = self.git('log -1 --skip 1 --format=format:"%H"').strip('"')
+        return commit_hash

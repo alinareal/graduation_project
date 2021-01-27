@@ -7,5 +7,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="app_console" />
+    <orderEntry type="module" module-name="file_storage" />
   </component>
 </module>

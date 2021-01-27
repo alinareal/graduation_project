@@ -4,8 +4,14 @@ from collections import namedtuple
 
 STRUCT = namedtuple('STRUCT', 'POS MAX_LEN')
 
-os.environ['PROJECT_PATH'] = 'D:\graduation_project'
 PROJECT_PATH = os.getenv('PROJECT_PATH')
+FILE_STORAGE_PATH = os.getenv('FILE_STORAGE_PATH')
+
+INDATA_FOLDER = 'indata'
+OUTDATA_FOLDER = 'outdata'
+
+INDATA_FOLDER_PATH = os.path.join(FILE_STORAGE_PATH, INDATA_FOLDER)
+OUTDATA_FOLDER_PATH = os.path.join(FILE_STORAGE_PATH, OUTDATA_FOLDER)
 
 INFILE_NAME = os.path.join('indata', 'File.{}.txt'.format(str(uuid.uuid4())))
 
@@ -33,6 +39,3 @@ TRAILER_TRANS_AMOUNT = STRUCT(slice(8, 20), 12)
 TRAILER_FILLER = STRUCT(slice(20, 120), 100)
 
 ALLOWED_FIELDS_TO_SET = ('name', 'surname', 'patronymic', 'address', 'trans_sum', 'currency_code')
-
-# for k, v in os.environ.items():
-#     print(f'{k}={v}')

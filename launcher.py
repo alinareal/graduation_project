@@ -4,26 +4,26 @@ from file_reader import FileReader
 from utils import create_json
 from version_manager import VersionManager
 from datetime import datetime
+from config import INDATA_FOLDER_PATH, OUTDATA_FOLDER_PATH
 
 now = datetime.now()
 dt_string = now.strftime("%d-%m-%YT%H-%M-%S")
-version_obj = VersionManager()
-commit_hash = version_obj.git('rev-parse HEAD')
-outdata_folder = 'outdata'
-json_path = os.path.join('outdata', dt_string, commit_hash)
-dirName = '{outdata_folder}/{dt_string}/{commit_hash}'.format(outdata_folder=outdata_folder, dt_string=dt_string,
-                                                              commit_hash=commit_hash)
+
+
 sample = FileReader()
-entries = os.listdir('indata/')
+entries = os.listdir(INDATA_FOLDER_PATH)
 
 with VersionManager() as version_manager:
-    os.makedirs(dirName)
+    current_hash = version_manager.get_current_hash()
+    outdata_files_path = os.path.join(OUTDATA_FOLDER_PATH, dt_string, current_hash)
+    os.makedirs(outdata_files_path)
     for entry in entries:
-        sample.set_file_path('indata', entry)
+        sample.set_file_path(INDATA_FOLDER_PATH, entry)
         sample_obj = sample.read_file()
         json_data = sample.general_information.convert_to_dict()
-        json_path = os.path.join(dirName, entry.strip('.txt') + '.json')
+        json_path = os.path.join(outdata_files_path, entry.strip('.txt') + '.json')
         create_json(json_path, json_data)
+
 
 # import argparse
 # parser = argparse.ArgumentParser(description='Add some integers.')
