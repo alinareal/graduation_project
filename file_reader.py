@@ -8,22 +8,19 @@ from utils import create_json
 
 class FileReader(object):
 
-    def __init__(self):
-        self.infile_name = os.path.join('indata', 'infile1.txt')
+    def __init__(self, file_path):
+        self.infile_path = file_path
         self.general_information = GeneralInformation()
 
-    def set_file_path(self, folder, file_name):
-        self.infile_name = os.path.join(folder, file_name)
-
     def _check_path(self):
-        if os.path.exists(self.infile_name):
+        if os.path.exists(self.infile_path):
             print('Start reading:')
         else:
-            raise ValueError('File does not exist at path {}.'.format(self.infile_name))
+            raise ValueError('File does not exist at path {}.'.format(self.infile_path))
 
     def _check_size(self):
-        if os.stat(self.infile_name).st_size == 0:
-            print('File located in the path {} is empty.'.format(self.infile_name))
+        if os.stat(self.infile_path).st_size == 0:
+            print('File located in the path {} is empty.'.format(self.infile_path))
 
     @staticmethod
     def _check_header_pos(header_line):
@@ -84,7 +81,7 @@ class FileReader(object):
 
         message = 'File contains line number {} with incorrect ID: {}!'
 
-        with open(self.infile_name, 'r') as file_name:
+        with open(self.infile_path, 'r') as file_name:
             lines_list = file_name.readlines()
 
             self._check_structure(lines_list)
@@ -112,15 +109,6 @@ class FileReader(object):
                         raise ValueError(message.format(str(index), line_id=conf.ID.POS))
             print('Reading file was completed successfully.')
 
-        return self.general_information
-
-
-# sample = FileReader()
-# sample.set_file_path('indata', 'File.283dcd67-45b8-4872-ba95-626b79130ec8.txt')
-# sample_obj = sample.read_file()
-# json_data = sample.general_information.convert_to_dict()
-# json_path = os.path.join('outdata', 'File.283dcd67-45b8-4872-ba95-626b79130ec8.json')
-# create_json(json_path, json_data)
 
 #TODO follow principle of single responsibility in method read_file +
 #TODO make decomposition in method read_file ?

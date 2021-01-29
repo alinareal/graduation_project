@@ -47,7 +47,7 @@ class VersionManager(object):
         self.go_to_any_commit(commit_hash)
 
     def get_current_hash(self):
-        commit_hash = self.git('log --pretty=format:"%h" -1').strip('"')
+        commit_hash = self.git('log --pretty=format:"%H" -1').strip('"')
         return commit_hash
 
     def get_previous_hash(self):
