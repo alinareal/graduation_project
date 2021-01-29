@@ -3,7 +3,6 @@ from decimal import Decimal, InvalidOperation
 
 import config as conf
 from models import (Transaction, GeneralInformation)
-from utils import create_json
 
 
 class FileReader(object):
