@@ -112,8 +112,6 @@ class FileReader(object):
 
 #TODO follow principle of single responsibility in method read_file +
 #TODO make decomposition in method read_file ?
-#TODO create system variable in windows to store path to current project ?
-#TODO extract this variable in config.py +
 #TODO file system: outdata/dd-mm-yyyy-Thh-mm-ss/commit_hash1
 #TODO file system: outdata/dd-mm-yyyy-Thh-mm-ss/commit_hash2
 #TODO make script launcher cli interface
