@@ -24,7 +24,7 @@ TRAILER_ID = '03'
 
 ID = STRUCT(slice(0, 2), 2)
 
-NAME = STRUCT(slice(2, 30), 28)
+NAME = STRUCT(slice(0, 30), 30)
 SURNAME = STRUCT(slice(30, 60), 30)
 PATRONYMIC = STRUCT(slice(60, 90), 30)
 ADDRESS = STRUCT(slice(90, 120), 30)
