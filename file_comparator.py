@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 import difflib
 import io
 import os
@@ -19,7 +15,7 @@ class FileComparator(object):
         self.report = None  # type: Optional[IO, None]
 
     @staticmethod
-    def _get_file_hash(source, encoding):  # type: (IO, AnyStr) -> int
+    def _get_file_hash(source, encoding):  # type: (IO, AnyStr) -> AnyStr
         hasher = md5()
         text = source.read().encode(encoding)
         hasher.update(text)
