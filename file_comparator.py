@@ -106,9 +106,8 @@ class FileComparator(object):
             return False
         return True
 
-    # TODO adding blocksize reading can be usefull in the future
-    def create_report(self, path1, path2, report_path, encoding, folder_name_to_write=None):
-        # type: (AnyStr, AnyStr, AnyStr, AnyStr, Optional[AnyStr]) -> Optional[int, None]
+    def create_report(self, path1, path2, report_path, encoding):
+        # type: (AnyStr, AnyStr, AnyStr, AnyStr) -> Optional[int, None]
         """
             Create report with the full information about comparing of two datasets of files:
             - number of compared files
@@ -144,9 +143,6 @@ class FileComparator(object):
         files_diff = set(names1).symmetric_difference(set(names2))
 
         with io.open(report_path, "a+", encoding=encoding) as self.report:
-
-            if folder_name_to_write is not None:
-                self._write_report_block("Comparing of file from: {} directory.", folder_name_to_write, sep="*")
 
             self._write_report_block("Encoding of files: {}.", encoding, sep="*")
 

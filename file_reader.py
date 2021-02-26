@@ -107,11 +107,3 @@ class FileReader(object):
                     for index, line_id in enumerate(file_name, start=1):
                         raise ValueError(message.format(str(index), line_id=conf.ID.POS))
             print('Reading file was completed successfully.')
-
-
-#TODO follow principle of single responsibility in method read_file
-#TODO make decomposition in method read_file
-#TODO file system: outdata/dd-mm-yyyy-Thh-mm-ss/commit_hash1
-#TODO file system: outdata/dd-mm-yyyy-Thh-mm-ss/commit_hash2
-#TODO make script launcher cli interface
-#TODO add 30 indata files
