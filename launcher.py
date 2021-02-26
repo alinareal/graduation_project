@@ -35,7 +35,7 @@ def launch_stage1(now_date):
 def launch_stage2(now_date):
     with VersionManager() as version_manager:
         previous_hash = version_manager.get_previous_hash()
-        # version_manager.go_to_previous_commit()
+        version_manager.go_to_previous_commit()
         outdata_files_path = os.path.join(OUTDATA_FOLDER_PATH, now_date, previous_hash)
         _run_generation(outdata_files_path)
 
