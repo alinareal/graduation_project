@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 HEADER_DEF = OrderedDict([('header_id', '01'),
-                          ('name', 'Ivan'),
+                          ('name', 'Erunda'),
                           ('surname', 'Ivanov'),
                           ('patronymic', 'Ivanovich'),
                           ('address', 'Sovetskaya9/23MinskBelarus')])
