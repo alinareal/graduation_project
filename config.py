@@ -14,6 +14,7 @@ INDATA_FOLDER_PATH = os.path.join(FILE_STORAGE_PATH, INDATA_FOLDER)
 OUTDATA_FOLDER_PATH = os.path.join(FILE_STORAGE_PATH, OUTDATA_FOLDER)
 
 INFILE_NAME = os.path.join('indata', 'File.{}.txt'.format(str(uuid.uuid4())))
+REPORT_NAME = "report.txt"
 
 LINE_LEN = 120
 LINE_ENDING = '\n'
