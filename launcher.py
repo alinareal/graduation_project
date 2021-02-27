@@ -7,10 +7,12 @@ from config import INDATA_FOLDER_PATH, OUTDATA_FOLDER_PATH, REPORT_NAME
 import argparse
 from file_comparator import FileComparator
 
-stage1, stage2 = ('stage1', 'stage2',)
+
+stages = ('stage1', 'stage2', 'stage3',)
+stage1, stage2, stage3 = stages
 
 parser = argparse.ArgumentParser(description='Launcher for DDT.')
-parser.add_argument('mode', help='launch mode', choices=(stage1, stage2,))
+parser.add_argument('mode', help='launch mode', choices=stages)
 parser.add_argument('now_date', help='date in format %d-%m-%YT%H-%M-%S')
 
 
@@ -26,27 +28,31 @@ def _run_generation(outdata_files_path):
 
 
 def launch_stage1(now_date):
-    with VersionManager() as version_manager:
-        current_hash = version_manager.get_current_hash()
-        outdata_files_path = os.path.join(OUTDATA_FOLDER_PATH, now_date, current_hash)
-        _run_generation(outdata_files_path)
+    version_manager = VersionManager()
+    current_hash = version_manager.get_current_hash()
+    outdata_files_path = os.path.join(OUTDATA_FOLDER_PATH, now_date, current_hash)
+    _run_generation(outdata_files_path)
 
 
-def launch_stage2(now_date):
-    with VersionManager() as version_manager:
-        previous_hash = version_manager.get_previous_hash()
-        version_manager.go_to_previous_commit()
-        outdata_files_path = os.path.join(OUTDATA_FOLDER_PATH, now_date, previous_hash)
-        _run_generation(outdata_files_path)
+def launch_stage2():
+    version_manager = VersionManager()
+    version_manager.go_to_previous_commit()
 
-        date_path = os.path.join(OUTDATA_FOLDER_PATH, now_date)
 
-        folder_name1, folder_name2 = os.listdir(date_path)
-        folder_path1, folder_path2 = os.path.join(date_path, folder_name1), os.path.join(date_path, folder_name2)
-        report_path = os.path.join(date_path, REPORT_NAME)
+def launch_stage3(now_date):
+    version_manager = VersionManager()
+    current_hash = version_manager.get_current_hash()
+    outdata_files_path = os.path.join(OUTDATA_FOLDER_PATH, now_date, current_hash)
+    _run_generation(outdata_files_path)
 
-        comparator = FileComparator()
-        comparator.create_report(folder_path1, folder_path2, report_path, "utf-8")
+    date_path = os.path.join(OUTDATA_FOLDER_PATH, now_date)
+
+    folder_name1, folder_name2 = os.listdir(date_path)
+    folder_path1, folder_path2 = os.path.join(date_path, folder_name1), os.path.join(date_path, folder_name2)
+    report_path = os.path.join(date_path, REPORT_NAME)
+
+    comparator = FileComparator()
+    comparator.create_report(folder_path1, folder_path2, report_path, "utf-8")
 
 
 if __name__ == "__main__":
@@ -55,5 +61,7 @@ if __name__ == "__main__":
     if args.mode == stage1:
         launch_stage1(args.now_date)
     elif args.mode == stage2:
-        launch_stage2(args.now_date)
+        launch_stage2()
+    elif args.mode == stage3:
+        launch_stage3(args.now_date)
     print("Done...")
